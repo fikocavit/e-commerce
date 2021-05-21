@@ -6,7 +6,7 @@ from carts.views import _cart_id
 from carts.models import Cart,CartItem
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.db.models import Q
-
+from django.http import HttpResponse
 def store(request, category_slug=None):
     categories=None
     products= None
@@ -19,7 +19,7 @@ def store(request, category_slug=None):
         paged_products=paginator.get_page(page)
         product_count=products.count()
     else:
-        products= Product.objects.all().filter(is_avilable=True)
+        products= Product.objects.all().filter(is_avilable=True).order_by('id')
         paginator = Paginator(products, 3)
         page= request.GET.get('page')
         paged_products=paginator.get_page(page)
@@ -46,8 +46,9 @@ def search(request):
         if keyword:
             products= Product.objects.order_by('-created_date').filter(Q(product_name__icontains=keyword) | Q(description__icontains=keyword))
             product_count =products.count()
-    return render(request, 'store.html', context={
-        'products': products,
-        'product_count' : product_count
-    })
+    context={
+        'products' : products,
+        'product_count' : product_count,
+    }
+    return render(request, 'store.html', context)
     
