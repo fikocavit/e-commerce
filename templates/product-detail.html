@@ -61,7 +61,7 @@
 					<select name="size" class='form-control' required>
 						<option value="" disabled selected>Select</option>
 						{% for i in single_product.variation_set.sizes %}
-						<option value="{{ i.variation_value}}">{{ i.variation_value}}</option>
+						<option value="{{ i.variation_value }}">{{ i.variation_value }}</option>
 						{% endfor %}
 					</select>
 				</div>
@@ -71,14 +71,9 @@
 			{% if single_product.stock <= 0 %}
 			<h5>Stock of out</h5>
 			{% else %}
-			
-				{% if in_cart %}
-					<a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i>  </a>
-					<a href="#" class="btn  btn-success"> <span class="text">Added to cart</span> <i class="fas fa-check"></i>  </a>
-				{% else %}
-					<button type="submit" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
-				{% endif %}
+			<button type="submit" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
 			{% endif %}
+			
 			
 			
 				
