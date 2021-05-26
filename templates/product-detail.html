@@ -41,20 +41,8 @@
 		
 		<p>{{single_product.description}}</p>
 		
-		
+		<!-- size does not show!....-->
 		<hr>
-			<div class="row">
-				<div class="item-option-select">
-					<h6>Choose Color</h6>
-					<select name="color" class='form-control' required>
-						<option value="" disabled selected>Select</option>
-						{% for i in single_product.variation_set.colors %}
-						<option value="{{ i.variation_value }}">{{ i.variation_value}}</option>
-						{% endfor %}
-						
-					</select>
-				</div>
-			</div> <!-- row.// -->
 			<div class="row">
 				<div class="item-option-select">
 					<h6>Select Size</h6>
@@ -67,18 +55,29 @@
 				</div>
 			</div>
 			<hr>
-			
+			<div class="row">
+				<div class="item-option-select">
+					<h6>Choose Color</h6>
+					<select name="color" class='form-control' required>
+						<option value="" disabled selected>Select</option>
+						{% for i in single_product.variation_set.colors %}
+						<option value="{{ i.variation_value }}">{{ i.variation_value}}</option>
+						{% endfor %}
+						
+					</select>
+				</div>
+			</div>
+			<hr>
 			{% if single_product.stock <= 0 %}
 			<h5>Stock of out</h5>
 			{% else %}
-			<button type="submit" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+			<button type="submit" class="btn btn-primary"> <span class="text">Add to cart</span><i class="fas fa-shopping-cart"></i></button>
 			{% endif %}
 			
 			
 			
-				
-		</article>
-	</form> <!-- product-info-aside .// -->
+		</form>
+	</article> <!-- product-info-aside .// -->
 </main> <!-- col.// -->
 	</div> <!-- row.// -->
 </div> <!-- card.// -->
